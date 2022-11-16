@@ -1,4 +1,4 @@
 # Simple NFT contract
 
-contract address on etherscan: 0x839eae1fb14534d30813Bd75AA0bE1bBCa7a1fCd
+contract address on etherscan: 0x067d5e9D625AC69a418522B14c0381c2c14F0f56
 
