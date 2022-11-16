@@ -4,8 +4,9 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-contract MyNft is ERC721, Ownable {
+contract MyNft is ERC721, Ownable, ERC721Enumerable {
 
     using Strings for uint256;
     using Counters for Counters.Counter;
@@ -35,5 +36,26 @@ contract MyNft is ERC721, Ownable {
 
     function _baseURI() internal view virtual override returns (string memory) {
         return _baseUri;
+    }
+
+     function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(
+            ERC721,
+            ERC721Enumerable
+        )
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+
+     function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 batchSize
+    ) internal override(ERC721, ERC721Enumerable){
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
     }
 }
